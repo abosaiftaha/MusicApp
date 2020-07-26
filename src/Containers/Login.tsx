@@ -157,7 +157,7 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
                 style={[styles.loginBtnText, loading && styles.marginRight10]}>
                 Login
               </Text>
-              {loading && <ActivityIndicator />}
+              {loading && <ActivityIndicator color={Colors.black} />}
             </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>

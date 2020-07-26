@@ -157,7 +157,7 @@ const SignUp: React.FC<SignUpProps> = ({navigation}) => {
                 style={[styles.loginBtnText, loading && styles.marginRight10]}>
                 SignUp
               </Text>
-              {loading && <ActivityIndicator />}
+              {loading && <ActivityIndicator color={Colors.black} />}
             </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>

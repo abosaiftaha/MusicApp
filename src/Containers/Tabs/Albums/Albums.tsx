@@ -57,7 +57,7 @@ const Albums = () => {
               </Text>
             </View>
           ) : loading ? (
-            <ActivityIndicator />
+            <ActivityIndicator color={Colors.black} />
           ) : (
             <View style={styles.noResultsContainer}>
               <Image source={noResults} style={styles.noResultsImage} />

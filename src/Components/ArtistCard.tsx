@@ -4,11 +4,12 @@ import {
   Image,
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {API_KEY, API_URL} from '../Configs';
@@ -90,8 +91,11 @@ const ArtistCard: React.SFC<ArtistCardProps> = ({item, disabled}) => {
       <Modal visible={showModal} animationType="slide">
         <SafeAreaView style={styles.modal}>
           <TouchableOpacity
+            hitSlop={{bottom: 5, left: 5, top: 5, right: 5}}
             style={[styles.modalCloseContainer]}
-            onPress={() => setShowModal(false)}>
+            onPress={() => {
+              setShowModal(false);
+            }}>
             <EvilIcons name="close" size={25} />
           </TouchableOpacity>
 
