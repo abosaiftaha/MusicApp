@@ -4,11 +4,12 @@ import {
   Image,
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {API_KEY, API_URL} from '../../../../Configs';
 import Colors from '../../../../Theme/Colors';
