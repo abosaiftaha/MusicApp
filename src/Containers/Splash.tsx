@@ -7,13 +7,15 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
 } from 'react-native';
+import {useSelector} from 'react-redux';
+import {ConfigsReducer} from '../Action/types';
 import {RootStackParamList} from '../App';
+import {RootState} from '../Reducer';
 import Colors from '../Theme/Colors';
 import Fonts from '../Theme/Fonts';
 
-const illustration = require('../../Assets/Images/splash.jpg') as ImageRequireSource;
+const illustration = require('../../Assets/Images/splash.png') as ImageRequireSource;
 
 type SplashScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -24,23 +26,22 @@ export interface SplashProps {
 }
 
 const Splash: React.FC<SplashProps> = ({navigation}) => {
+  const {loggedIn} = useSelector<RootState>(
+    (state) => state.Configs,
+  ) as ConfigsReducer;
+
   useEffect(() => {
     const setTimer = setTimeout(() => {
-      navigation.replace('Home');
+      loggedIn ? navigation.replace('Tabs') : navigation.replace('Login');
     }, 3000);
 
     return () => {
       clearTimeout(setTimer);
     };
-  }, [navigation]);
+  }, [loggedIn, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        translucent
-        barStyle="light-content"
-        backgroundColor="transparent"
-      />
       <View style={styles.textContainer}>
         <Text style={styles.title}>Music App</Text>
         <Text style={styles.text}>Lyrics on the fly</Text>
@@ -55,36 +56,28 @@ export default Splash;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
     position: 'relative',
+    marginHorizontal: 20,
   },
   textContainer: {
-    marginTop: '20%',
+    marginBottom: 100,
     marginLeft: 20,
-    position: 'relative',
-    zIndex: 2,
-    textAlign: 'center',
   },
   text: {
     fontFamily: Fonts.regular,
     fontSize: Fonts.md,
-    color: Colors.white,
-    textShadowColor: 'rgba(0, 0, 0, 0.4)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
+    color: Colors.black,
   },
   title: {
     fontFamily: Fonts.bold,
-    color: Colors.white,
+    color: Colors.black,
     fontSize: Fonts.huge,
-    textShadowColor: 'rgba(0, 0, 0, 0.4)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
   },
   img: {
     width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-    position: 'absolute',
-    zIndex: 1,
+    resizeMode: 'contain',
+    height: '50%',
   },
 });
